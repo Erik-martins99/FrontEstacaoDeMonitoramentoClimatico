@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.chart-container {
+  padding: 20px; /* Adiciona espaçamento interno ao contêiner */
+}
+
+.chart-container > div {
+  margin-bottom: 40px; /* Adiciona espaço entre os gráficos */
+}
