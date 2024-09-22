@@ -3,29 +3,29 @@ import axios from 'axios';
 import AnyChart from 'anychart-react';
 import anychart from 'anychart';
 
-const TemperatureChart = () => {
-    const [temperatureData, setTemperatureData] = useState([]);
+const GraficoDeLuzHora = () => {
+    const [luminosityData, setLuminosityData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://192.168.0.18:8080/condicaoClimatica')
+        axios.get('http://192.168.0.18:8080/condicaoClimatica/hora')
             .then(response => {
                 const processedData = response.data.map(item => ({
                     x: item.data,
-                    value: parseFloat(item.temperatura),
+                    value: parseInt(item.luminosidade),
                 }));
-                setTemperatureData(processedData);
+                setLuminosityData(processedData);
             })
             .catch(error => {
-                console.error('Erro ao buscar dados de temperatura:', error);
+                console.error('Erro ao buscar dados de luminosidade:', error);
             });
     }, []);
 
     const chart = anychart.line();
-    chart.data(temperatureData);
-    chart.title("Temperatura");
+    chart.data(luminosityData);
+    chart.title("Luminosidade");
     chart.xAxis().title("Data");
-    chart.yAxis().title("Temperatura (°C)");
-    chart.tooltip().format('Data: {%x}\nTemperatura: {%value} °C');
+    chart.yAxis().title("Luminosidade (%)");
+    chart.tooltip().format('Data: {%x}\nLuminosidade: {%value}%');
 
     return (
         <div style={{ width: '100%', height: '700px' }}>
@@ -34,5 +34,4 @@ const TemperatureChart = () => {
     );
 };
 
-export default TemperatureChart;
-
+export default GraficoDeLuzHora;

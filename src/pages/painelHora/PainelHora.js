@@ -1,18 +1,18 @@
 import React from 'react';
-import TemperatureChart from '../temperatura/graficoTemperatura';
-import LuminosityChart from '../luz/graficoLuz';
+import GraficoDeLuzHora from './GraficoLuzHora';
+import GraficoDeTemperaturaHora from './GraficoTemperaturaHora';
 
-const CombinedCharts = () => {
+const PainelHora = () => {
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: '100px', width: "100%", flexDirection: "column" }}>
             <div style={{ width: '100%', height: '600px' }}>
-                <TemperatureChart />
+                <GraficoDeTemperaturaHora />
             </div>
             <div style={{ width: '100%', height: '600px' }}>
-                <LuminosityChart />
+                <GraficoDeLuzHora />
             </div>
         </div>
     );
 };
 
-export default CombinedCharts;
+export default PainelHora;
