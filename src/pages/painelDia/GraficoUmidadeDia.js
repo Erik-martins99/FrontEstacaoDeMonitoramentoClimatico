@@ -3,29 +3,29 @@ import axios from 'axios';
 import AnyChart from 'anychart-react';
 import anychart from 'anychart';
 
-const GraficoDeLuzDia = () => {
-    const [luminosityData, setLuminosityData] = useState([]);
+const GraficoDeUmidadeDia = () => {
+    const [humidityData, setHumidityData] = useState([]);
 
     useEffect(() => {
         axios.get('http://192.168.0.223:8080/condicaoClimatica/dia')
             .then(response => {
                 const processedData = response.data.map(item => ({
                     x: item.data,
-                    value: parseInt(item.luminosidade),
+                    value: parseFloat(item.umidade),
                 }));
-                setLuminosityData(processedData);
+                setHumidityData(processedData);
             })
             .catch(error => {
-                console.error('Erro ao buscar dados de luminosidade:', error);
+                console.error('Erro ao buscar dados de umidade:', error);
             });
     }, []);
 
     const chart = anychart.line();
-    chart.data(luminosityData);
-    chart.title("Luminosidade");
+    chart.data(humidityData);
+    chart.title("Umidade");
     chart.xAxis().title("Data");
-    chart.yAxis().title("Luminosidade (%)");
-    chart.tooltip().format('Data: {%x}\nLuminosidade: {%value}%');
+    chart.yAxis().title("Umidade (%)");
+    chart.tooltip().format('Data: {%x}\nUmidade: {%value} %');
 
     return (
         <div style={{ width: '100%', height: '700px' }}>
@@ -34,4 +34,4 @@ const GraficoDeLuzDia = () => {
     );
 };
 
-export default GraficoDeLuzDia;
+export default GraficoDeUmidadeDia;

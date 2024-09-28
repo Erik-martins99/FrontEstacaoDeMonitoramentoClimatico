@@ -7,7 +7,7 @@ const GraficoDeTemperatura = () => {
     const [temperatureData, setTemperatureData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://192.168.0.18:8080/condicaoClimatica')
+        axios.get('http://192.168.0.223:8080/condicaoClimatica')
             .then(response => {
                 const processedData = response.data.map(item => ({
                     x: item.data,

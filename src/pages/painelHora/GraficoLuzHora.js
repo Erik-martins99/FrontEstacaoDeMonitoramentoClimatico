@@ -7,7 +7,7 @@ const GraficoDeLuzHora = () => {
     const [luminosityData, setLuminosityData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://192.168.0.18:8080/condicaoClimatica/hora')
+        axios.get('http://192.168.0.223:8080/condicaoClimatica/hora')
             .then(response => {
                 const processedData = response.data.map(item => ({
                     x: item.data,
